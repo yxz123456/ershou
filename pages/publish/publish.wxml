@@ -1,0 +1,34 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+  <view class="header" style="margin-top:{{height*2}}rpx">
+  <text>#选择标签</text>
+  <view class='type'>
+    <block wx:for="{{labelText}}" wx:key="">
+      <view class="li {{labelList[index] ? 'color2' : 'color1'}}"  bindtap='choose' data-index="{{index}}" data-text="{{item}}">{{item}}</view>
+    </block>
+  </view>
+  <input class="input" placeholder='请输入标题（15个字以内）' maxlength='15' bindblur='getTitle' placeholder-class='inputPlaceholder'></input>
+  <view class='line'></view>
+</view>
+
+<view class="content">
+  <textarea class='article' placeholder='详细描述（200字以内）' maxlength='200' bindblur='getDetail' placeholder-class='inputPlaceholder'></textarea>
+  <view class='img'>
+    <image bindtap='getPicture' src="images/add.png"></image>
+    <block wx:for="{{imgInfo}}" wx:key="">
+        <view wx:if="{{index < 3}}" class="image" style=" background-image:url({{item}});" bindtap="tapImg" data-index="{{index}}">
+          
+        </view>
+    </block>
+  </view>
+  <view class='line'></view>
+  <view class='info'>
+    <label for='name'>联系人</label><input class='user_info' id='name' bindblur='getUserName'></input>
+  </view>
+  <view class='info'>
+    <label for='tel'>联系电话</label><input class='user_info' id='tel' bindblur='getTel'></input>
+  </view>
+</view>
+<view class="footer">
+  <button type='primary' bindtap='send'>发布</button>
+</view>
+

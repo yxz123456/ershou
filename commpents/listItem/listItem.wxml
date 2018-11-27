@@ -1,0 +1,25 @@
+<!--pages/listItem/listItem.wxml-->
+<template name="list">
+    <view  class="list-item">
+        <view class="list-item-head">
+            <image />
+            <view class="text">
+                <text class="name-time">
+                    <text class="name">方之维</text>
+                    <text class="time">18:00 10月19日</text>
+                </text>
+                <text class="detail">2222222222222222222222222222222222222222222222222222222</text>
+            </view>
+            <view class="button" bindtap="buttonTap">{{info.buttonText}}</view>
+        </view>
+        <view class="list-item-content">
+            <image />
+            <image />
+            <image />
+        </view>
+        <view class="list-item-foot">
+            <image src="../../static/img/1.png"/>
+            <view class="icon">{{info.labelText}}</view>
+        </view>
+    </view>
+</template>

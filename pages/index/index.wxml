@@ -1,13 +1,16 @@
 <!--index.wxml-->
+<import src="../../commpents/listItem/listItem.wxml"></import>
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <view class="search">
+    <view class="icon">
+      <icon type="sreach" size="46"/>
+    </view>
+    <input class="search-input" confirm-type="search" type="text"></input>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  
+  <view class="list">
+      <template is="list" data="{{info}}"></template>
   </view>
+  
 </view>

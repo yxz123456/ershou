@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -13,7 +13,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.3.0",
 	"appid": "wx9bf2875ffa3566bb",
-	"projectname": "flea",
+	"projectname": "ershou",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

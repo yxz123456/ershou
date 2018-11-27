@@ -1,31 +1,26 @@
-//index.js
-//获取应用实例
-const app = getApp()
-
+// pages/listItem/listItem.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    navbarData: {
-      showCapsule: 0, //是否显示左上角图标
-      title: '', //导航栏 中间的标题
-      color: "#85C7CA"
-    },// 此页面 页面内容距最顶部的距离
-    height: app.globalData.height * 2 + 20,
-    info:{
-      buttonText:"联系ta",
-      labelText:"学习用品"
-    }
-    
+    buttonText:"删除",
+    labelText:"学习用品",
   },
-
   buttonTap(){
-    wx.makePhoneCall({
-      phoneNumber:"15826855545"
+    wx.showModal({
+      title:"提示",
+      content:"您确定要删除吗？",
+      success(){
+        console.log(1);
+      },
+      fail(){
+        console.log(0);
+      }
     })
   },
+
   /**
    * 生命周期函数--监听页面加载
    */

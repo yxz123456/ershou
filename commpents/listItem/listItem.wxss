@@ -1,0 +1,99 @@
+/* pages/listItem/listItem.wxss */
+
+
+
+.list-item{
+    width: 675rpx;
+    margin: 0 auto;
+    background:#ffffff;
+    border-radius: 10rpx;
+    margin-bottom:30rpx;
+}
+
+.list-item-head{
+    padding:14rpx;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.list-item-head image{
+    background:#7a2121;
+    width: 104rpx;
+    height: 104rpx;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 20rpx;
+}
+.list-item-head .text{
+    display: flex;
+    flex-direction:column;
+    font-size: 28rpx;
+    width: 400rpx;
+}
+.list-item-head .name-time{
+    line-height: 52rpx;
+}
+.list-item-head .name-time .name{
+    font-size: 32rpx;
+    margin-right: 20rpx;
+}
+.list-item-head .detail{
+    line-height: 52rpx;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.list-item-head .button{
+    width:120rpx;
+    height: 60rpx;
+    border: 4rpx solid #ff0000;
+    box-sizing: border-box;
+    color: #ff0000;
+    line-height: 52rpx;
+    text-align: center;
+    border-radius: 10rpx;
+    align-items: center;
+    background:transparent;
+    font-size: 24rpx;
+    position:absolute;
+    top:10rpx;
+    right: 10rpx;
+}
+
+.list-item-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding:20rpx;
+}
+
+.list-item-content image{
+    width: 180rpx;
+    height: 135rpx;
+    background: #7a2121;
+    border-radius:20rpx;
+}
+
+.list-item-foot{
+    padding:20rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.list-item-foot image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 30rpx;
+}
+
+.list-item-foot .icon{
+    width: 150rpx;
+    height: 60rpx;
+    font-size: 24rpx;
+    border-radius: 10rpx;
+    background: #C3DE6C;
+    display: inline-block;
+    color: #ffffff;
+    text-align: center;
+    line-height:60rpx;
+}
