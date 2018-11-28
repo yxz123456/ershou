@@ -24,8 +24,8 @@ App({
             console.log(res)
             let data = res.data
             if (data.code === 1) {
-              wx.setStorageSync('user', data.data)
-              console.log('用户数据缓存成功')
+              wx.setStorageSync('user', data.data);
+              console.log('用户数据缓存成功');
             }
           }
         })
