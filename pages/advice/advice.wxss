@@ -1,0 +1,71 @@
+page{
+  background: #eeeeee;
+}
+
+.header{
+  height: 7vh;
+  background: #85C7CA;
+  position: relative;
+}
+
+.box{
+  height: 26vh;
+  width: 90%;
+  margin: 0 auto;
+  background: white;
+  border-bottom:2rpx solid white;
+  z-index: 666;
+  position: absolute;
+  left: 5%;
+}
+
+.logo {
+  width: 160rpx;
+  height: 176rpx;
+  position: absolute;
+  left:50%;
+  margin-left: -80rpx;
+  top:4vh;
+}
+
+.back{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  left: 2vw;
+  top:3vw;
+}
+.content{
+  width: 90%;
+  height: 55vh;
+  margin: 21vh auto 0 auto;
+  background: white;
+  border-radius: 0 0 25rpx 25rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.article{
+  width:90%;
+  height: 30vh;
+  margin: 5%;
+  font-size:32rpx;
+}
+.placeholderArticle{
+  color: #dad5d5;
+  font-size: 28rpx;
+}
+
+.send{
+  position: absolute;
+  width: 150rpx;
+  height: 58rpx;
+  bottom:r5px;
+  left:50%;
+  margin-left:-75rpx;
+  background: #C3DE6C;
+  line-height: 58rpx;
+  text-align: center;
+  color: white;
+  font-size:28rpx;
+}

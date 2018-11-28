@@ -1,0 +1,12 @@
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+<view class='header' style="margin-top:{{height}}px">
+  <view class='box'>
+  <image class='back' src='images/back.png' bindtap='back'></image>
+    <image  class="logo" mode="cover" src='images/tucao.png'></image>
+  </view>
+</view>
+<view class='content'>
+    <textarea class='article' placeholder='您在使用过程中遇到了哪些问题和新的想法，请写下来反馈给我哦~' placeholder-class='placeholderArticle' bindinput='getTuCao'>
+    </textarea>
+    <button class='send' bindtap='sendTuCao'>吐 槽</button>
+</view>

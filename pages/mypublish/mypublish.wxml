@@ -1,0 +1,18 @@
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+<import src="../../commpents/listItem/listItem.wxml" />
+<!-- <view class="container"> -->
+  <view class='header' style="margin-top:{{height}}px">
+    <view class='box'>
+      <image class='back' src='images/back.png' bindtap='back'></image>
+      <image  class="logo" mode="cover" src='images/fabu.png'></image>
+    </view>
+  </view>
+ 
+    <view class="list">
+     <block wx:for="{{arr}}" wx:key="">
+      <template is="list" data="{{info}}"></template>
+     </block>
+    </view>
+  
+  
+

@@ -1,0 +1,48 @@
+page{
+  background: #eeeeee;
+}
+
+.header{
+  height: 7vh;
+  background: #85C7CA;
+  position: relative;
+}
+
+.box{
+  height: 86vh;
+  width: 90%;
+  margin: 0 auto;
+  background: white;
+  z-index: 666;
+  position: absolute;
+  left: 5%;
+  border-radius: 0 0 20rpx 20rpx;
+}
+.back{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  left: 2vw;
+  top:3vw;
+}
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  position: absolute;
+  background: #eeeeee;
+  left:50%;
+  margin-left: -64rpx;
+  top:20rpx;
+}
+.userinfo-nickname{
+  position: absolute;
+  left: 50%;
+  top:152rpx;
+  display: block;
+  width:200rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  margin-left:-100rpx;
+}

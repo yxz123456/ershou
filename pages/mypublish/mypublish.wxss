@@ -1,0 +1,42 @@
+
+@import "../..//commpents/listItem/listItem.wxss";
+page{
+  background: #eeeeee;
+}
+
+.header{
+  height: 7vh;
+  background: #85C7CA;
+  position: relative;
+}
+
+.box{
+  height: 26vh;
+  width:675rpx;
+  margin: 0 auto;
+  background: white;
+  z-index: 666;
+  position: absolute;
+  left: 5%;
+}
+
+.back{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  left: 2vw;
+  top:3vw;
+}
+
+.logo {
+  width: 160rpx;
+  height: 176rpx;
+  position: absolute;
+  left:50%;
+  margin-left: -80rpx;
+  top:4vh;
+}
+
+.list{
+  margin-top:22vh;
+}

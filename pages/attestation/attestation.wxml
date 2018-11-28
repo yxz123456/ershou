@@ -1,0 +1,8 @@
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+<view class='header' style="margin-top:{{height}}px">
+  <view class='box'>
+  <image class='back' src='images/back.png' bindtap='back'></image>
+    <image  class="userinfo-avatar" mode="cover" src='{{userInfo.avatarUrl}}'></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+</view>

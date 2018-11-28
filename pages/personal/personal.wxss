@@ -1,0 +1,70 @@
+page{
+  background: #eeeeee;
+  
+}
+.header{
+  height: 7vh;
+  background: #85C7CA;
+  position: relative;
+}
+/* .bg{
+  background: #eeeeee;
+  height:auto;
+  width: 100vw;
+  overflow: hidden;
+} */
+.box{
+  height: 26vh;
+  width: 90%;
+  margin: 0 auto;
+  background: white;
+  border-bottom:1px solid white;
+  z-index: 666;
+  position: absolute;
+  left: 5%;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  background: #eeeeee;
+  position: absolute;
+  left:50%;
+  margin-left: -64rpx;
+  top:40rpx;
+}
+.userinfo-nickname{
+  position: absolute;
+  left: 50%;
+  top:170rpx;
+  display: block;
+  width:200rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  margin-left:-100rpx;
+}
+
+.content{
+  width: 90%;
+  height:55vh;
+  margin: 21vh auto 0 auto;
+  background: white;
+  border-radius: 0 0 25rpx 25rpx;
+  display: flex;
+  justify-content:space-between;
+}
+
+.personalMethod{
+  width: 50px;
+  height: 55px;
+  margin-top:4vh;
+}
+
+.personalMethod:first-child{
+  margin-left: 2vh;
+}
+.personalMethod:last-child{
+  margin-right: 2vh;
+}
