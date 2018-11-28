@@ -1,3 +1,4 @@
+import {tools} from "../../tools/tools.js";
 const app = getApp()
 Page({
   //index.js
@@ -117,16 +118,7 @@ Page({
             else{
               newImgInfo.push(val);
             }
-            console.log(newImgInfo);
           });
-          // while(1){
-          //   if(newImgInfo.length >= 3){
-          //     break;
-          //   }
-          //   else{
-          //     newImgInfo.push("");
-          //   }
-          // }
           this.setData({
             imgInfo:newImgInfo
           });
@@ -150,13 +142,8 @@ Page({
    
   },
   //查看图片详情
-  tapImg(ev){
-    let srcArr = this.data.imgInfo;
-    let index = ev.currentTarget.dataset.index;
-    wx.previewImage({
-      urls:srcArr,
-      current:srcArr[index]
-    })
+  previewImage(ev){
+    tools.previewImage(ev,this.data.imgInfo);
   },
   //判断标签是否选择
   checkLabel:function(){

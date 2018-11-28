@@ -15,7 +15,7 @@
   <view class='img'>
     <image bindtap='getPicture' src="images/add.png"></image>
     <block wx:for="{{imgInfo}}" wx:key="">
-        <view wx:if="{{index < 3}}" class="image" style=" background-image:url({{item}});" bindtap="tapImg" data-index="{{index}}">
+        <view wx:if="{{index < 3}}" class="image" style=" background-image:url({{item}});" bindtap="previewImage" data-index="{{index}}">
           
         </view>
     </block>

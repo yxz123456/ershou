@@ -1,3 +1,4 @@
+import {tools} from "../../tools/tools.js";
 const app = getApp();
 Page({
   /**
@@ -13,7 +14,7 @@ Page({
     info:{
       buttonText:"删除",
       labelText:"学习用品",
-      
+      imgInfo:["","",""]
     },
     // 此页面 页面内容距最顶部的距离
     height: app.globalData.height * 2 + 20,
@@ -38,6 +39,11 @@ Page({
         console.log(0);
       }
     })
+  },
+
+  //查看图片详情
+  previewImage(ev){
+    tools.previewImage(ev,this.data.info.imgInfo);
   },
   /**
    * 生命周期函数--监听页面加载

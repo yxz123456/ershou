@@ -1,4 +1,5 @@
 // pages/listItem/listItem.js
+
 Page({
 
   /**
@@ -8,18 +9,10 @@ Page({
     buttonText:"删除",
     labelText:"学习用品",
   },
-  buttonTap(){
-    wx.showModal({
-      title:"提示",
-      content:"您确定要删除吗？",
-      success(){
-        console.log(1);
-      },
-      fail(){
-        console.log(0);
-      }
-    })
-  },
+
+ 
+
+  
 
   /**
    * 生命周期函数--监听页面加载

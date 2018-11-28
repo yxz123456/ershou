@@ -41,7 +41,12 @@ Page({
    */
   onLoad: function (options) {
     //获得用户信息
-    let userInfo = tools.getUserInfo('userInfo');
+    this.setUserInfo();
+  },
+
+  //设置用户信息
+  setUserInfo(){
+    let userInfo = tools.getLocalInfo('userInfo');
     this.setData({
       userInfo:userInfo
     })

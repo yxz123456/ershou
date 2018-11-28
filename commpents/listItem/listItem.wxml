@@ -10,12 +10,12 @@
                 </text>
                 <text class="detail">2222222222222222222222222222222222222222222222222222222</text>
             </view>
-            <view class="button" bindtap="buttonTap">{{info.buttonText}}</view>
+            <view class="button" bindtap="buttonTap" data-tel="{{info.phoneNumber}}">{{info.buttonText}}</view>
         </view>
         <view class="list-item-content">
-            <image />
-            <image />
-            <image />
+            <block wx:for="{{info.imgInfo}}" wx:key="">
+                <view wx:if="{{index < 3}}" class="image" style=" background-image:url({{item}});" bindtap="previewImage" data-src="{{item}}" data-index="{{index}}"></view>
+            </block>
         </view>
         <view class="list-item-foot">
             <image src="../../static/img/1.png"/>

@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+import {tools} from "../../tools/tools.js";
 const app = getApp()
 
 Page({
@@ -16,15 +17,22 @@ Page({
     height: app.globalData.height * 2 + 20,
     info:{
       buttonText:"联系ta",
-      labelText:"学习用品"
+      labelText:"学习用品",
+      imgInfo:["","","",""],
+      phoneNumber:'15826855545'
     }
     
   },
-
-  buttonTap(){
+  //打电话
+  buttonTap(ev){
     wx.makePhoneCall({
-      phoneNumber:"15826855545"
+      phoneNumber:ev.currentTarget.dataset.tel
     })
+  },
+
+
+  previewImage(ev){
+    tools.previewImage(ev,this.data.info.imgInfo);
   },
   /**
    * 生命周期函数--监听页面加载

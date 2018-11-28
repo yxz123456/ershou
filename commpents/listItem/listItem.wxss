@@ -66,11 +66,13 @@
     padding:20rpx;
 }
 
-.list-item-content image{
+.list-item-content .image{
     width: 180rpx;
     height: 135rpx;
     background: #7a2121;
     border-radius:20rpx;
+    background-position: 25% 40%;
+    background-size: cover;
 }
 
 .list-item-foot{
