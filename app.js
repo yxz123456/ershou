@@ -15,8 +15,23 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         this.globalData.userCode = res.code;
         this.getUserInfo();
+        console.log(res)        
+        let code = res.code
+        let url = `https://ikebo.cn/flea/api/v1/user/${code}`
+        wx.request({
+          url: url,
+          success: (res) => {
+            console.log(res)
+            let data = res.data
+            if (data.code === 1) {
+              wx.setStorageSync('user', data.data)
+              console.log('用户数据缓存成功')
+            }
+          }
+        })
       }
     })
+    
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -49,6 +64,7 @@ App({
         this.globalData.height = res.statusBarHeight
       }
     })
+  
   },
   globalData: {
     userInfo: null,
