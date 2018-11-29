@@ -1,4 +1,6 @@
 import {tools} from "../../tools/tools.js";
+import {Request} from "../../utils/request.js";
+const request = new Request();
 const app = getApp()
 Page({
   //index.js
@@ -30,7 +32,10 @@ Page({
     //选择的标签的信息
     labelInfo:"",
     //图片信息
-    imgInfo:["","",""]
+    imgInfo:["","",""],
+
+    //用户信息
+    userInfo:{}
   },
 
   //点击后切换标签颜色
@@ -87,6 +92,7 @@ Page({
   },
   //获得用户姓名
   getUserName: function (ev) {
+    console.log(this.getInfo(ev));
     this.setData({
       name: this.getInfo(ev)
     })
@@ -111,6 +117,8 @@ Page({
         count:6,
         //成功回调
         success:(res) =>{
+          console.log(res);
+          //只显示3个
           res.tempFilePaths.forEach((val,index)=>{
             if(index <= 3){
               newImgInfo.splice(index,1,val);
@@ -166,12 +174,70 @@ Page({
       var str = this.data.waringInfo[1];
       this.errorAlert(str);
     }
+    else{
+      // this.postData();
+      this.postImg();
+    }
+  },
+
+  //
+// itemName     名称
+// des                描述
+// srcs               物品图片地址 
+// originPrice     标签
+// price           姓名
+
+  //上传数据
+  postData(){
+    let data = {
+      itemName:this.data.title[0],
+      des:this.data.detail[0],
+      srcs:tools.map(this.data.imgInfo).join('|'),
+      itemType:0,
+      realName:this.data.name[0],
+      phoneNumber:this.data.tel[0]
+    };
+    data[name] = this.data.labelInfo;
+    data[label] = this.data.name[0];
+
+    request.request({
+      url:`/item/${this.data.userInfo.id}`,
+      data,
+      method:"POST",
+    }).then(res => {
+      //隔半秒跳转回主页
+      setTimeout(() => {
+        wx.switchTab({
+          url: '../index/index'
+        })
+      }, 500);
+    })
+  },
+
+  //上传图片
+  postImg(){
+    request.uploadFile({
+      //去除空的站位符
+      filePath:tools.map(this.data.imgInfo).join('|'),
+      name:"img"
+    }).then(res => {
+      console.log("file",res);
+      // this.postData();
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.setData({
+      userInfo:tools.getUserInfo()
+    })
+    console.log(this.data.userInfo);
+    request.request({
+      url:`/item`,
+    }).then(res=>{
+      console.log(res);
+    })
   },
 
   /**

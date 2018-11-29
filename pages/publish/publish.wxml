@@ -22,10 +22,12 @@
   </view>
   <view class='line'></view>
   <view class='info'>
-    <label for='name'>联系人</label><input class='user_info' id='name' bindblur='getUserName'></input>
+    <text>联系人:</text>
+    <input class='user_info' id='name' bindblur='getUserName'></input>
   </view>
   <view class='info'>
-    <label for='tel'>联系电话</label><input class='user_info' id='tel' bindblur='getTel'></input>
+    <text>联系电话:</text>
+    <input class='user_info' id='tel' bindblur='getTel'></input>
   </view>
 </view>
 <view class="footer">

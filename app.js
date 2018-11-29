@@ -9,26 +9,13 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
+   
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         this.globalData.userCode = res.code;
         this.getUserInfo();
-        console.log(res)        
-        let code = res.code
-        let url = `https://ikebo.cn/flea/api/v1/user/${code}`
-        wx.request({
-          url: url,
-          success: (res) => {
-            console.log(res)
-            let data = res.data
-            if (data.code === 1) {
-              wx.setStorageSync('user', data.data);
-              console.log('用户数据缓存成功');
-            }
-          }
-        })
       }
     })
     
@@ -41,9 +28,6 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo;
-              
-              //将用户头像存储在本地
-              tools.setLocalInfo('userInfo',res.userInfo);
         
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
@@ -71,12 +55,23 @@ App({
     share: false,  // 分享默认为false
     height: 0,
     userCode:null,
+    label:"originPrice",
+    name:"price"
   },
+
   getUserInfo(){
     request.request({
-      url:`/user/${1}`
+      url:`/user/${this.globalData.userCode}`
     }).then(res=>{
-      console.log(res);
+      console.log(res.data);
+      //用户数据储存到本地
+      let data = res.data
+      data.data.nickName = this.globalData.userInfo.nickName;
+      data.data.avatarUrl = this.globalData.userInfo.avatarUrl;     
+      if (data.code === 1) {
+        tools.setLocalInfo('userInfo', data.data);
+        console.log('用户数据缓存成功');
+      }
     })
   }
 

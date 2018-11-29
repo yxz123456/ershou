@@ -22,6 +22,22 @@ let tools = {
           current:srcArr[index]
         })
     },
+
+    //获取用户信息
+    getUserInfo(){
+        return this.getLocalInfo('userInfo');
+    },
+
+    //数组去除空项
+    map(arr){
+        let newArr = [];
+        arr.forEach(function(val,index){
+            if(val){
+                newArr.push(val);
+            }
+        })
+        return newArr;
+    }
 }
 
 
