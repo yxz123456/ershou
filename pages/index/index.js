@@ -22,7 +22,7 @@ Page({
       phoneNumber:'15826855545'
     },
     
-    userInfoFlag:true
+    userInfoFlag:false
   },
   //打电话
   buttonTap(ev){

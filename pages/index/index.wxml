@@ -4,9 +4,11 @@
 <button wx:if="{{!userInfoFlag}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="margin-top:120rpx;">授权登录</button>
 <block wx:else>
   <view class="container">
-  <!-- <view class="search bar1">
+  <!-- <view class="bar1">
     <input  confirm-type="search" type="text"  placeholder="请输入您要搜索的内容..." placeholder-class="searchInput-placeholder"></input>
-    <button>搜索</button>
+    <view class="search-button">
+      <icon type="search" color="rgba(255,255,255,0.8)"/>
+    </view>
     
   </view> -->
   

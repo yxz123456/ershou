@@ -5,36 +5,44 @@ page{
     background: #eeeeee;
 }
 .bar1 {
-    background: #A3D0C3;
+    display: flex;
+    width: 675rpx;
+    height: 90rpx;
+    flex-direction: row;
+    overflow: hidden;
+    padding: 8rpx 0;
+    margin-top:-60rpx;
 }
 .searchInput-placeholder{
-    font-size:28rpx;
-}
-.bar1 input {
-    border: 2px solid #85C7CA;
-    border-radius: 5px;
-    background: #F9F0DA;
-    color: #9E9C9C;
-    padding:10rpx;
-    
-}
-.bar1 button {
-    height: 84rpx;
-    width: 84rpx;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: #7BA7AB;
-    border-radius: 0 5px 5px 0;
-    
-}
-.bar1 button:before {
-    content: "\f002";
-    font-family: FontAwesome;
-    font-size: 16px;
-    color: #F9F0DA;
+    font-size:24rpx;
 }
 
+.bar1 input {
+    outline:none;
+    border: 4rpx solid #85C7CA;
+    border-radius: 10rpx 0 0 10rpx;
+    background: rgba(255,255,255,0.5);
+    color: #9E9C9C;
+    padding:6rpx;
+    flex:1;
+}
+
+.bar1 .search-button {
+    height: 72.5rpx;
+    width: 84rpx;
+    background: #85C7CA;
+    border-radius: 0 10rpx 10rpx 0;
+    position: relative;
+}
+.bar1 .search-button icon{
+    width: 46rpx;
+    height: 46rpx;
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin: -23rpx 0 0 -23rpx;
+    color:#ffffff;
+}
 .list-item-head .button{
     border-color:#00BFFF;
     color: #00BFFF;
