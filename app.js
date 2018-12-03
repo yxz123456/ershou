@@ -15,6 +15,8 @@ App({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         this.globalData.userCode = res.code;
+        //获取用户信息
+        this.getUserInfo();
       }
     })
     
@@ -27,9 +29,7 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo;
-              
-              //获取用户信息
-              this.getUserInfo();
+              console.log(res.userInfo);
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -67,9 +67,8 @@ App({
       console.log(res.data);
       //用户数据储存到本地
       let data = res.data
-      data.data.nickName = this.globalData.userInfo.nickName;
-      data.data.avatarUrl = this.globalData.userInfo.avatarUrl;
-
+      // data.data.nickName = this.globalData.userInfo.nickName;
+      // data.data.avatarUrl = this.globalData.userInfo.avatarUrl;
       tools.setLocalInfo('userInfo', data.data);
       console.log('用户数据缓存成功');
       

@@ -14,7 +14,7 @@ class Request{
                 data:data,
                 success:(res) => {
                     console.log("res",res);
-                    if(res.code == 1){
+                    if(res.data.code == 1){
                         resolve(res);
                     }
                     
