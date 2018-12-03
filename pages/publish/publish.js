@@ -1,5 +1,6 @@
 import {tools} from "../../tools/tools.js";
 import {Request} from "../../utils/request.js";
+
 const request = new Request();
 const app = getApp()
 Page({
@@ -28,22 +29,51 @@ Page({
     //标签有没有被点击
     labelList: [false, false, false, false, false],
     //标签内的文本
-    labelText:["学习用品","电子产品","生活用品","体育用品","其他"],
+    labelText:{
+      0:{
+        type:"学习用品",
+        id:2
+      },
+      1:{
+        type:"电子产品",
+        id:3
+      },
+      2:{
+        type:"生活用品",
+        id:6
+      },
+      3:{
+        type:"体育用品",
+        id:1
+      },
+      4:{
+        type:"其他",
+        id:8
+      },
+      length:5
+    },
     //选择的标签的信息
     labelInfo:"",
     //图片信息
     imgInfo:["","",""],
+    serverImg:[],
+    imgFinish:false,
 
     //用户信息
     userInfo:{}
   },
 
+  // 运动用品 学习用品 电子产品 -> 1 2 3 
+  // 生活用品 其他用品 -> 6 8
+
+  //标签转数字
   //点击后切换标签颜色
   changeLabelColor:function(index,ev){
-    var labelList = this.data.labelList;
-    var len = labelList.length;
-    var info = ev.target.dataset.text;
-    for(var i = 0; i < len; i++){
+    let labelList = this.data.labelList;
+    let len = labelList.length;
+    //取出当前标签的id
+    let info = ev.target.dataset.id;
+    for(let i = 0; i < len; i++){
       if(i == index){
         labelList[i] = !labelList[i];
       }
@@ -51,6 +81,8 @@ Page({
         labelList[i] = false;
       }
     }
+
+    
     this.setData({
       labelList:labelList,
       labelInfo:info
@@ -60,7 +92,7 @@ Page({
   choose:function(ev){
     let index = ev.currentTarget.dataset.index;
     this.changeLabelColor(index,ev);
-    
+    console.log(this.data.labelInfo);
   },
   
   //限制信息提示
@@ -165,18 +197,19 @@ Page({
   },
   //绑定发布按钮
   send:function(){
-    var title = this.data.title[0];
-    var detail = this.data.detail[0];
-    var tel = this.data.tel[0];
-    var name = this.data.name[0];
-    var img = this.data.imgInfo;
+    let title = this.data.title[0];
+    let detail = this.data.detail[0];
+    let tel = this.data.tel[0];
+    let name = this.data.name[0];
+    let img = this.data.imgInfo;
     if (!title || !detail || !tel || !name || img.length==0 || !this.checkLabel()){
       var str = this.data.waringInfo[1];
       this.errorAlert(str);
+      return;
     }
     else{
-      // this.postData();
-      this.postImg();
+      //this.postData();
+      this.post();
     }
   },
 
@@ -187,24 +220,67 @@ Page({
 // originPrice     标签
 // price           姓名
 
+
+
+
   //上传数据
   postData(){
+    //数据
     let data = {
       itemName:this.data.title[0],
       des:this.data.detail[0],
-      srcs:tools.map(this.data.imgInfo).join('|'),
-      itemType:0,
+      srcs:tools.map(this.data.serverImg).join('|'),
+      type:this.data.labelInfo,
       realName:this.data.name[0],
       phoneNumber:this.data.tel[0]
     };
-    data[name] = this.data.labelInfo;
-    data[label] = this.data.name[0];
+    return request.request({
+        url:`/item/${this.data.userInfo.id}`,
+        data,
+        method:"POST",
+      });
 
-    request.request({
-      url:`/item/${this.data.userInfo.id}`,
-      data,
-      method:"POST",
-    }).then(res => {
+  },
+
+  //上传图片
+  postImg(){
+    let imgInfo = tools.map(this.data.imgInfo);
+     return request.uploadFile({
+        //去除空的站位符
+        filePath:imgInfo[0],
+        name:"img"
+      })
+  },
+
+  // 上传
+  post(){
+    let imgArr = [];
+    let data;
+    /*let p = new Promise((reslove,reject)=>{
+      reslove();
+    });*/
+
+
+    this.postImg()
+    //图片上传
+    .then(res=>{
+      //图片存储到本地
+      data = JSON.parse(res.data);
+      console.log(data);
+      console.log(typeof data.data.imgServerPath);
+      imgArr.push(data.data.imgServerPath);
+    
+      // console.log(imgArr);
+      this.setData({
+        serverImg:imgArr,
+        imgFinish:true
+      })
+      console.log(this.data.serverImg);
+      return this.postData();
+    })
+    //数据上传
+    .then(res => {
+      this.errorAlert("发布成功");
       //隔半秒跳转回主页
       setTimeout(() => {
         wx.switchTab({
@@ -212,17 +288,9 @@ Page({
         })
       }, 500);
     })
-  },
-
-  //上传图片
-  postImg(){
-    request.uploadFile({
-      //去除空的站位符
-      filePath:tools.map(this.data.imgInfo).join('|'),
-      name:"img"
-    }).then(res => {
-      console.log("file",res);
-      // this.postData();
+    .catch(res =>{
+      this.errorAlert("发布失败");
+      console.log("失败");
     })
   },
   /**

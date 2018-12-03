@@ -3,7 +3,7 @@
   <text>#选择标签</text>
   <view class='type'>
     <block wx:for="{{labelText}}" wx:key="">
-      <view class="li {{labelList[index] ? 'color2' : 'color1'}}"  bindtap='choose' data-index="{{index}}" data-text="{{item}}">{{item}}</view>
+      <view wx:if="{{index < 5}}" class="li {{labelList[index] ? 'color2' : 'color1'}}"  bindtap='choose' data-index="{{index}}" data-id="{{item.id}}">{{item.type}}</view>
     </block>
   </view>
   <input class="input" placeholder='请输入标题（15个字以内）' maxlength='15' bindblur='getTitle' placeholder-class='inputPlaceholder'></input>

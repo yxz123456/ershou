@@ -3,8 +3,8 @@
 class Request{
     // baseUrl = "https://api.apiopen.top/EmailSearch?number=1012002";
     // baseUrl = 'https://www.easy-mock.com/mock/5bf4d73dc713ab09b02bca8f/flea/api/v1';
-    // baseUrl = 'https://ikebo.cn/flea/api/v1';
-    baseUrl = "http://100.64.48.144:4000/flea/api/v1";
+    baseUrl = 'https://ikebo.cn/flea/api/v1';
+    // baseUrl = "http://100.64.48.144:4000/flea/api/v1";
 
     request({url,method='GET',data={}}){
         return new Promise((resolve,reject)=>{
@@ -14,7 +14,10 @@ class Request{
                 data:data,
                 success:(res) => {
                     console.log("res",res);
-                    resolve(res);
+                    if(res.code == 1){
+                        resolve(res);
+                    }
+                    
                 },
                 fail:(err)=>{
                     reject(err);
@@ -33,6 +36,7 @@ class Request{
                 success:(res) => {
                     console.log("uploadFile",res);
                     resolve(res);
+                    
                 },
                 fail:(err) => {
                     console.log("uploadFileErr",err);
