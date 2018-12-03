@@ -20,8 +20,9 @@ Page({
       labelText:"学习用品",
       imgInfo:["","","",""],
       phoneNumber:'15826855545'
-    }
+    },
     
+    userInfoFlag:true
   },
   //打电话
   buttonTap(ev){
@@ -30,15 +31,35 @@ Page({
     })
   },
 
-
+  //查看图片详情
   previewImage(ev){
     tools.previewImage(ev,this.data.info.imgInfo);
   },
+
+  //判断是否能获取头像
+  judgeUserInfo(){
+    if(tools.getUserInfo().nickName){
+      this.setData({
+        userInfoFlag:true
+      })
+    }
+  },
+
+  getUserInfo: function(e) {
+    let userInfo = tools.getUserInfo();
+    userInfo.nickName = e.detail.userInfo.nickName;
+    userInfo.avatarUrl = e.detail.userInfo.avatarUrl;
+
+    tools.setLocalInfo("userInfo",userInfo);
+    this.judgeUserInfo();
+    console.log(e.detail.userInfo);
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.judgeUserInfo();
   },
 
   /**

@@ -7,12 +7,16 @@ page{
 .bar1 {
     background: #A3D0C3;
 }
+.searchInput-placeholder{
+    font-size:28rpx;
+}
 .bar1 input {
-    border: 2px solid #7BA7AB;
+    border: 2px solid #85C7CA;
     border-radius: 5px;
     background: #F9F0DA;
     color: #9E9C9C;
-    padding:40rpx;
+    padding:10rpx;
+    
 }
 .bar1 button {
     height: 84rpx;
