@@ -6,28 +6,32 @@
       <view wx:if="{{index < 5}}" class="li {{labelList[index] ? 'color2' : 'color1'}}"  bindtap='choose' data-index="{{index}}" data-id="{{item.id}}">{{item.type}}</view>
     </block>
   </view>
-  <input class="input" placeholder='请输入标题（15个字以内）' maxlength='15' bindblur='getTitle' placeholder-class='inputPlaceholder'></input>
+  <input wx:if="{{isSend}}" class="input" placeholder='请输入标题（15个字以内）' value="" maxlength='15' bindblur='getTitle' placeholder-class='inputPlaceholder'></input>
+  <input wx:else="" class="input" placeholder='请输入标题（15个字以内）' maxlength='15' bindblur='getTitle' placeholder-class='inputPlaceholder'></input>
   <view class='line'></view>
 </view>
 
 <view class="content">
-  <textarea class='article' placeholder='详细描述（200字以内）' maxlength='200' bindblur='getDetail' placeholder-class='inputPlaceholder'></textarea>
-  <view class='img'>
+  <textarea wx:if="{{isSend}}" class='article' placeholder='详细描述（200字以内）' maxlength='200' bindblur='getDetail' placeholder-class='inputPlaceholder' value=""></textarea>
+  <textarea wx:else="" class='article' placeholder='详细描述（200字以内）' maxlength='200' bindblur='getDetail' placeholder-class='inputPlaceholder'></textarea>
+  <view class='img' style="height:{{imgInfo.length > 3 ? 320 : 180}}rpx">
     <image bindtap='getPicture' src="images/add.png"></image>
     <block wx:for="{{imgInfo}}" wx:key="">
         <view wx:if="{{index < 3}}" class="image" style=" background-image:url({{item}});" bindtap="previewImage" data-index="{{index}}">
-          
+            <view class="close" catch:tap="deleteImg" data-index="{{index}}"></view>
         </view>
     </block>
   </view>
   <view class='line'></view>
   <view class='info'>
     <text>联系人:</text>
-    <input class='user_info' id='name' bindblur='getUserName'></input>
+    <input wx:if="{{isSend}}" class='user_info' id='name' bindblur='getUserName' value=""></input>
+    <input wx:else="" class='user_info' id='name' bindblur='getUserName'></input>
   </view>
   <view class='info'>
     <text>联系电话:</text>
-    <input class='user_info' id='tel' bindblur='getTel'></input>
+    <input wx:if="{{isSend}}" class='user_info' id='tel' bindblur='getTel' type="number" value=""></input>
+    <input wx:else="" class='user_info' id='tel' bindblur='getTel' type="number"></input>
   </view>
 </view>
 <view class="footer">

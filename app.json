@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     
     "pages/index/index",
     "pages/publish/publish",
@@ -7,37 +7,37 @@
     "pages/personal/personal",
     "pages/advice/advice",
     "pages/attestation/attestation",
-    "pages/mypublish/mypublish"
-   
+    "pages/mypublish/mypublish",
+    "pages/itemDetail/itemDetail"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black",
-    "navigationStyle":"custom"
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
   },
   "tabBar": {
-    "backgroundColor":"#ffffff",
-    "selectedColor":"#86c8cb",
+    "backgroundColor": "#ffffff",
+    "selectedColor": "#86c8cb",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "市场",
-        "iconPath":"static/img/market-0.png",
-        "selectedIconPath":"static/img/market-1.png"
+        "iconPath": "static/img/market-0.png",
+        "selectedIconPath": "static/img/market-1.png"
       },
       {
         "pagePath": "pages/publish/publish",
         "text": "发布",
-        "iconPath":"static/img/publish-0.png",
-        "selectedIconPath":"static/img/publish-1.png"
+        "iconPath": "static/img/publish-0.png",
+        "selectedIconPath": "static/img/publish-1.png"
       },
       {
         "pagePath": "pages/personal/personal",
-        "text":"个人",
-        "iconPath":"static/img/personal-0.png",
-        "selectedIconPath":"static/img/personal-1.png"
+        "text": "个人",
+        "iconPath": "static/img/personal-0.png",
+        "selectedIconPath": "static/img/personal-1.png"
       }
     ]
   }

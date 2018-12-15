@@ -2,7 +2,7 @@ import {tools} from "../../tools/tools.js";
 import {Request} from "../../utils/request.js";
 
 const request = new Request();
-const app = getApp()
+const app = getApp();
 Page({
   //index.js
   //获取应用实例
@@ -15,6 +15,7 @@ Page({
     nvabarData: {
       showCapsule: 1, //是否显示左上角图标
       title: '发布', //导航栏 中间的标题
+      color: "#85C7CA"
     },
     // 此页面 页面内容距最顶部的距离
     height: app.globalData.height * 2 + 20,
@@ -25,7 +26,7 @@ Page({
     tel:[],
     //'标题必须15字以内','详细内容不能超过200字','名字不能超过8个字',
     waringInfo:['电话号码必须为11位','信息或标签不能为空'],
-    chooseImgInfo:['图片选择成功','图片选择失败','只能选择6张图片'],
+    chooseImgInfo:['图片选择成功','图片选择失败','只能选择7张图片'],
     //标签有没有被点击
     labelList: [false, false, false, false, false],
     //标签内的文本
@@ -55,9 +56,10 @@ Page({
     //选择的标签的信息
     labelInfo:"",
     //图片信息
-    imgInfo:["","",""],
+    imgInfo:[],
     serverImg:[],
-    imgFinish:false,
+    // 是否发送
+    isSend:false,
 
     //用户信息
     userInfo:{}
@@ -81,8 +83,6 @@ Page({
         labelList[i] = false;
       }
     }
-
-    
     this.setData({
       labelList:labelList,
       labelInfo:info
@@ -95,14 +95,7 @@ Page({
     console.log(this.data.labelInfo);
   },
   
-  //限制信息提示
-  errorAlert:function(str){
-    wx.showToast({
-      title: str,
-      icon: 'none',
-      duration: 2000//持续的时间
-    })
-  },
+  
   //获取信息
   getInfo:function(ev){
       var info = ev.detail.value;
@@ -137,47 +130,51 @@ Page({
     //判断是否为11位
     if(this.data.tel[1]!=11){
       var str = this.data.waringInfo[0];
-      this.errorAlert(str);
+      tools.infoAlert(str);
     }
+  },
+  //删除图片
+  deleteImg(ev){
+    let index = ev.currentTarget.dataset.index;
+    let imgInfo = this.data.imgInfo;
+    imgInfo.splice(index,1);
+    this.setData({
+      imgInfo:imgInfo
+    })
   },
   //获取用户图片信息
   getPicture:function(){
-    let newImgInfo = ["","",""];
-    if(newImgInfo.length <= 6){
+    let newImgInfo = this.data.imgInfo;
+    if(newImgInfo.length < 3){
       wx.chooseImage({
         //个数限制
-        count:6,
+        count:3-newImgInfo.length,
+        sizeType: ['compressed'],
         //成功回调
         success:(res) =>{
           console.log(res);
-          //只显示3个
           res.tempFilePaths.forEach((val,index)=>{
-            if(index <= 3){
-              newImgInfo.splice(index,1,val);
-            }
-            else{
-              newImgInfo.push(val);
-            }
+            newImgInfo.push(val);
           });
           this.setData({
-            imgInfo:newImgInfo
+            imgInfo:tools.map(newImgInfo)
           });
           //成功提示
           let str = this.data.chooseImgInfo[0];
-          this.errorAlert(str);
+          tools.infoAlert(str);
           console.log(this.data.imgInfo);
         },
         //失败回调
         fail:()=>{
           //失败提示
           let str = this.data.chooseImgInfo[1];
-          this.errorAlert(str);
+          tools.infoAlert(str);
         }
       })
     }
     else{
       let str = this.data.chooseImgInfo[2];
-      this.errorAlert(str);
+      tools.infoAlert(str);
     }
    
   },
@@ -195,16 +192,18 @@ Page({
     }
     return false;
   },
+
   //绑定发布按钮
   send:function(){
     let title = this.data.title[0];
     let detail = this.data.detail[0];
     let tel = this.data.tel[0];
     let name = this.data.name[0];
-    let img = this.data.imgInfo;
-    if (!title || !detail || !tel || !name || img.length==0 || !this.checkLabel()){
+    let img = tools.map(this.data.imgInfo).join('|');
+    console.log(img.length);
+    if (!title || !detail || !tel || !name || img.length == 0 || !this.checkLabel()){
       var str = this.data.waringInfo[1];
-      this.errorAlert(str);
+      tools.infoAlert(str);
       return;
     }
     else{
@@ -212,17 +211,6 @@ Page({
       this.post();
     }
   },
-
-  //
-// itemName     名称
-// des                描述
-// srcs               物品图片地址 
-// originPrice     标签
-// price           姓名
-
-
-
-
   //上传数据
   postData(){
     //数据
@@ -238,38 +226,82 @@ Page({
         url:`/item/${this.data.userInfo.id}`,
         data,
         method:"POST",
-      });
+    });
 
   },
 
+  // postImg1(index,num,imgArr,imgInfo){
+  //   if(index == num-1){
+  //     return request.uploadFile({
+  //       filePath:imgInfo[index],
+  //       name:"img"
+  //     })
+  //   }
+  //   return request.uploadFile({
+  //     filePath:imgInfo[index],
+  //     name:"img"
+  //   }).then(res=>{
+  //     //图片存储到本地
+  //     data = JSON.parse(res.data);
+  //     console.log(data);
+  //     imgArr.push(data.data.imgServerPath);
+  //     this.postImg(index+1,num,imgArr);
+  //   })
+  // },
+
   //上传图片
   postImg(){
-    let imgInfo = tools.map(this.data.imgInfo);
-     return request.uploadFile({
-        //去除空的站位符
-        filePath:imgInfo[0],
+    let imgInfo = this.data.imgInfo;
+    //图片长度
+    let len = imgInfo.length;
+    console.log(len);
+    //存服务器返回的数据
+    let data;
+    //存服务器返回的src
+    let imgArr = [];
+
+    for(let i = 0; i < len; i++){
+      if(i == len - 1){
+        return request.uploadFile({
+          filePath:imgInfo[i],
+          name:"img"
+        })
+      }
+      request.uploadFile({
+        filePath:imgInfo[i],
         name:"img"
+      }).then(res=>{
+        //图片存储
+        data = JSON.parse(res.data);
+        console.log(data);
+        imgArr.push(data.data.imgServerPath);
+        // console.log(imgArr);
+        if(i == len - 2){
+          this.setData({
+            serverImg:imgArr,
+            imgFinish:true       
+          })
+          console.log(this.data.serverImg)
+        }
       })
+    }
   },
 
   // 上传
   post(){
-    let imgArr = [];
-    let data;
-    /*let p = new Promise((reslove,reject)=>{
-      reslove();
-    });*/
-
+    // let imgInfo = this.data.imgInfo;
+    
+    // //存服务器返回的src
+    // let imgArr = [];
 
     this.postImg()
     //图片上传
     .then(res=>{
+      let imgArr = this.data.serverImg;
       //图片存储到本地
-      data = JSON.parse(res.data);
+      let data = JSON.parse(res.data);
       console.log(data);
-      console.log(typeof data.data.imgServerPath);
       imgArr.push(data.data.imgServerPath);
-    
       // console.log(imgArr);
       this.setData({
         serverImg:imgArr,
@@ -280,18 +312,22 @@ Page({
     })
     //数据上传
     .then(res => {
-      this.errorAlert("发布成功");
+      tools.infoAlert("发布成功");
       //隔半秒跳转回主页
       setTimeout(() => {
         wx.switchTab({
-          url: '../index/index'
+          url:'../index/index'
         })
-      }, 500);
+        // this.clearData();
+      }, 1000);
+      //清空数据
+      
     })
     .catch(res =>{
-      this.errorAlert("发布失败");
+      tools.infoAlert("发布失败");
       console.log("失败");
     })
+    
   },
   /**
    * 生命周期函数--监听页面加载
@@ -301,11 +337,6 @@ Page({
       userInfo:tools.getUserInfo()
     })
     console.log(this.data.userInfo);
-    request.request({
-      url:`/item`,
-    }).then(res=>{
-      console.log(res);
-    })
   },
 
   /**
@@ -319,7 +350,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+  
   },
 
   /**

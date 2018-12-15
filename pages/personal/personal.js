@@ -15,7 +15,7 @@ Page({
       color:"#85C7CA"
     },
     // 此页面 页面内容距最顶部的距离
-    height: app.globalData.height * 2 + 20,
+    height: app.globalData.height * 2 + 10,
     userInfo:""
   },
   toAttestation:function(){

@@ -1,5 +1,5 @@
 <nav-bar navbar-data='{{navbarData}}'></nav-bar>
-<view class='header' style="margin-top:{{height}}px">
+<view class='header' style="margin-top:{{height*2}}rpx">
   <view class='box'>
   <image class='back' src='images/back.png' bindtap='back'></image>
     <image  class="userinfo-avatar" mode="cover" src='{{userInfo.avatarUrl}}'></image>

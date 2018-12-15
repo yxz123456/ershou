@@ -32,15 +32,18 @@
 }
 .list-item-head .name-time{
     line-height: 52rpx;
+    font-size:28rpx;
 }
 .list-item-head .name-time .name{
     font-size: 32rpx;
     margin-right: 20rpx;
 }
 .list-item-head .detail{
+    height: 52rpx;
     line-height: 52rpx;
     overflow: hidden;
     text-overflow:ellipsis;
+    white-space: nowrap;
 }
 .list-item-head .button{
     width:120rpx;
@@ -67,10 +70,11 @@
 }
 
 .list-item-content .image{
-    width: 180rpx;
-    height: 135rpx;
-    background: #7a2121;
-    border-radius:20rpx;
+    width: 200rpx;
+    height: 200rpx;
+    background-image:url("https://ikebo.cn/flea/static/uploads/2018-12-06/3749a7c8-f7ae-4797-a204-e9716577fbdb.jpg");
+    /* background: #7a2121; */
+    border-radius:5rpx;
     background-position: 25% 40%;
     background-size: cover;
 }

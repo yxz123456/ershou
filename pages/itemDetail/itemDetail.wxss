@@ -1,0 +1,145 @@
+/* pages/itemDetail/itemDetail.wxss */
+page{
+    margin: 0;
+    padding: 0;
+    height: 1330rpx;
+    /* background: url("https://ikebo.cn/flea/static/uploads/2018-12-06/3749a7c8-f7ae-4797-a204-e9716577fbdb.jpg") repeat; */
+}
+.navigate{
+    width: 100%;
+    margin: 0 auto;
+}
+.header{
+    width: 750rpx;
+    margin: 0 auto;
+    overflow: hidden;
+    /* background:#85C7CA;*/
+    /* margin-top:-68rpx;     */
+}
+/* .box{
+    background:#85C7CA;
+    width: 750rpx;
+    margin-top:-62rpx;  
+}    */
+.imgInfo{
+    position: relative;
+    width: 100%;
+    height: 550rpx;
+}
+
+/* .imgInfo swiper-item{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    
+} */
+
+.imgInfo swiper-item image{
+    position:absolute;
+    top:0;
+    width: 750rpx;
+    height: 550rpx;
+    background-image:url("https://ikebo.cn/flea/static/uploads/2018-12-06/3749a7c8-f7ae-4797-a204-e9716577fbdb.jpg");
+    background-position: 40% 70%;
+    background-size: cover;
+}
+
+.content{
+    width: 675rpx;
+    margin: 0 auto;
+    padding:20rpx 0;
+}
+
+.content .top{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: space-between;
+    /* background: #fff; */
+    font-size:24rpx;
+    /* padding: 10rpx; */
+}
+
+.content .top image{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+}
+
+.content .top .title-time{
+    padding-left:20rpx;
+    text-align: left;
+    flex:1;
+}
+.content .top .title-time .title{
+    font-size:36rpx;
+    /* font-weight: 600; */
+    font-family: "黑体";
+}
+
+.content .top .title-time .time{
+    color:rgb(133,133,133);
+}
+
+.content .top .label{
+    width: 120rpx;
+    height: 50rpx;
+    text-align: center;
+    line-height: 50rpx;
+    border-radius: 10rpx;
+    background: #C3DE6C;
+    color:#fff;
+}
+.content .des{
+    padding: 20rpx;
+    height: 250rpx;
+    text-indent: 2em;
+    overflow: scroll;
+    font-size:30rpx;
+    font-family: "微软雅黑";
+}
+
+.line{
+    margin:20rpx 0;
+    background: #eeeeee;
+    height: 5rpx;
+}
+
+.userInfo{
+    position: relative;
+    height: 100rpx;
+}
+
+.call{
+    width: 100rpx;
+    height: 40rpx;
+    padding: 5rpx;
+    line-height: 40rpx;
+    text-align: center;
+    border: 4rpx solid #00BFFF;
+    border-radius: 10rpx;
+    color: #00BFFF;
+    font-size: 22rpx;
+    position: absolute;
+    top:0;
+    right: 0;
+}
+
+text{
+    display: inline-block;
+    height: 50rpx;
+    padding: 5rpx;
+    text-align: left;
+    line-height: 50rpx;
+    font-size:24rpx;
+}
+
+.type{
+    width: 150rpx;
+    color:rgb(133,133,133);
+    margin-right: 20rpx;
+}
+.info{
+    width: 200rpx;
+}

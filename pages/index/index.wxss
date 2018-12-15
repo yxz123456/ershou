@@ -7,11 +7,9 @@ page{
 .bar1 {
     display: flex;
     width: 675rpx;
-    height: 90rpx;
     flex-direction: row;
     overflow: hidden;
-    padding: 8rpx 0;
-    margin-top:-60rpx;
+    margin-bottom: 30rpx;
 }
 .searchInput-placeholder{
     font-size:24rpx;
@@ -28,7 +26,6 @@ page{
 }
 
 .bar1 .search-button {
-    height: 72.5rpx;
     width: 84rpx;
     background: #85C7CA;
     border-radius: 0 10rpx 10rpx 0;

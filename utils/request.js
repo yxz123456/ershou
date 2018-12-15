@@ -13,11 +13,8 @@ class Request{
                 method:method,
                 data:data,
                 success:(res) => {
-                    console.log("res",res);
-                    if(res.data.code == 1){
-                        resolve(res);
-                    }
-                    
+                    // console.log("res",res);
+                    resolve(res);
                 },
                 fail:(err)=>{
                     reject(err);
@@ -35,8 +32,7 @@ class Request{
                 name,
                 success:(res) => {
                     console.log("uploadFile",res);
-                    resolve(res);
-                    
+                    resolve(res);    
                 },
                 fail:(err) => {
                     console.log("uploadFileErr",err);

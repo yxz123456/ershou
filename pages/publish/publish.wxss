@@ -6,8 +6,9 @@
 .header text{
   display: block;
   font-size:26rpx; 
-  color:#bfc8c8; 
-  margin-bottom:20rpx;
+  color:#bfc8c8;
+  padding:8rpx 0; 
+  margin-bottom:12rpx;
 }
 .header .type{
   display:flex;
@@ -48,46 +49,92 @@
   margin: 0 auto;
 }
 
+
 .article{
   border:none;
   display: block;
-  height: 250rpx;
-  margin: 37rpx 0;
+  overflow:scroll;
+  width: 675rpx;
+  height: 180rpx;
+  margin: 37rpx auto 20rpx auto;
 }
 
 .content .img{
-  height: 190rpx;
-  width:100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding:20rpx 0;
-  /* position: relative; */
+  /* height: 320rpx; */
+  width:675rpx;
+  padding:10rpx 0;
+  position: relative;
 }
 
 .content .img image{
   width: 150rpx;
   height: 150rpx;
-  border-radius: 10rpx;
+  border-radius: 10rpx; 
 }
 
 .content .img .image{
   width: 150rpx;
   height: 150rpx;
+  position:absolute;
   border-radius: 10rpx;
   background-position: 25% 40%;
   background-size: cover;
 }
 
+.content .img .image:nth-child(2){
+  left: 175rpx;
+  top:10rpx;
+}
+
+.content .img .image:nth-child(3){
+  left:350rpx;
+  top:10rpx;
+}
+
+.content .img .image:nth-child(4){
+  left: 525rpx;
+  top:10rpx;
+}
+
+.content .img .image:nth-child(5){
+  left: 0;
+  top:165rpx;
+}
+
+.content .img .image:nth-child(6){
+  left: 175rpx;
+  top:165rpx;
+}
+
+.content .img .image:nth-child(7){
+  left: 350rpx;
+  top:165rpx;
+}
+
+.content .img .image:nth-child(8){
+  left: 525rpx;
+  top:165rpx;
+}
+.image .close{
+  position: absolute;
+  background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544105127146&di=d3b5133a5c68b528d6a657d262c13444&imgtype=0&src=http%3A%2F%2Fpic.51yuansu.com%2Fpic3%2Fcover%2F01%2F37%2F29%2F5926878acbda9_610.jpg");
+  border-radius: 10rpx;
+  width: 30rpx;
+  height: 30rpx;
+  background-size: cover;
+  top:0;
+  right: 0;
+}
+
 .line{
   width:675rpx;
   height:16rpx;
-  margin: 0 auto;
+  margin: 5rpx auto;
   background: #E2E2E2;
 }
 
 .info{
-  margin: 0 auto;
+  margin: 2rpx auto;
   padding: 15rpx 0;
   height: 70rpx;
   font-size: 28rpx;
@@ -100,13 +147,13 @@
 
 .info text{
   display: inline-block;
-  /* padding:10rpx 5rpx; */
   width: 150rpx;
   
   
 }
 
 .user_info{
+  color:#000000;
   width: 75%;
   display:inline-block;
  
@@ -120,7 +167,7 @@
 .footer button{
   display: block;
   width: 100%;
-  height: 100rpx;
+  height: 90rpx;
   margin: 0 auto;
   text-align: center;
   line-height: 100rpx;

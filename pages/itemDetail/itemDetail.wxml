@@ -1,0 +1,38 @@
+<!--pages/itemDetail/itemDetail.wxml-->
+<!-- <view class="container"> -->
+    <nav-bar navbar-data='{{navbarData}}' class="navigate"></nav-bar>
+    <view class="header" >
+        <swiper autoplay="true" indicator-dots="true" class="imgInfo" style="margin-top:{{(height-1)*2}}rpx">
+            <block wx:for="{{detailInfo.srcs}}" wx:key="">
+                <swiper-item >
+                    <image style=" background-image:url({{item}});" data-index="{{index}}" bind:tap="previewImage"/>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <view class="content">
+        <view class="top">
+            <image class="avatar" src="{{detailInfo.avatarUrl}}"></image>
+            <view class="title-time">
+                <view class="title">{{detailInfo.itemName}}</view>
+                <view class="time">{{detailInfo.time}}</view>
+            </view>
+            <view class="label">{{detailInfo.type}}</view>
+        </view>
+        <view class="des">{{detailInfo.des}}</view>
+        <view class="line"></view>
+        <view class="userInfo">
+            <view class="call" bind:tap="callUser">联系TA</view>
+            <view class="realName">
+                <text class="type">联系人:</text>
+                <text class="info">{{detailInfo.realName}}</text>
+            </view>
+            <view class="telNumber">
+                <text class="type">联系电话:</text>
+                <text class="info">{{detailInfo.phoneNumber}}</text>
+            </view>
+        </view>
+    </view>
+<!-- </view> -->
+
+

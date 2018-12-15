@@ -1,25 +1,25 @@
 <!--pages/listItem/listItem.wxml-->
 <template name="list">
-    <view  class="list-item">
+    <view  class="list-item" catch:tap="getDetailInfo" data-index="{{index}}">
         <view class="list-item-head">
-            <image />
+            <image src="{{item.userInfo.avatarUrl}}"/>
             <view class="text">
                 <text class="name-time">
-                    <text class="name">方之维</text>
-                    <text class="time">18:00 10月19日</text>
+                    <text class="name">{{item.userInfo.nickName}}</text>
+                    <text class="time">{{item.time}}</text>
                 </text>
-                <text class="detail">2222222222222222222222222222222222222222222222222222222</text>
+                <text class="detail">{{item.des}}</text>
             </view>
-            <view class="button" bindtap="buttonTap" data-tel="{{info.phoneNumber}}">{{info.buttonText}}</view>
+            <view class="button" catch:tap="buttonTap" data-tel="{{item.phoneNumber}}" data-num="{{item.num}}">{{item.buttonText}}</view>
         </view>
-        <view class="list-item-content">
-            <block wx:for="{{info.imgInfo}}" wx:key="">
-                <view wx:if="{{index < 3}}" class="image" style=" background-image:url({{item}});" bindtap="previewImage" data-src="{{item}}" data-index="{{index}}"></view>
+        <view class="list-item-content"> 
+            <block wx:for="{{item.srcs}}" wx:key="" wx:for-item="items">
+                <view wx:if="{{index < 3}}" class="image" style=" background-image:url({{items}});" catch:tap="previewImage" data-src="{{items}}" data-index="{{index}}"  data-num="{{item.num}}"></view>
             </block>
         </view>
         <view class="list-item-foot">
             <image src="../../static/img/1.png"/>
-            <view class="icon">{{info.labelText}}</view>
+            <view class="icon">{{item.type}}</view>
         </view>
     </view>
 </template>

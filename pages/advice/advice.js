@@ -1,3 +1,6 @@
+import {tools} from "../../tools/tools.js";
+import {Request} from "../../utils/request.js";
+let request = new Request();
 const app = getApp();
 Page({
 
@@ -14,6 +17,8 @@ Page({
     height: app.globalData.height * 2 + 20,
     //限制信息
     alertInfo:["吐槽信息不能为空哦"],
+    //是否发送
+    isSend:false,
     //吐槽信息
     TuCaoInfo:["",0]
   },
@@ -54,18 +59,19 @@ Page({
       this.errorAlert(str);
     }
     else{
-      wx.request({
-        url:app.globalData.baseUrl + "/advice",
+      request.request({
+        url:"/advice",
         data:{
           advice:this.data.TuCaoInfo[0]
         },
         method:"POST",
-        success:res=>{
-          console.log(res);
-        },
-        fail:err=>{
-          console.log(err);
-        }
+      }).then(res=>{
+        console.log(res);
+        setTimeout(()=>{
+          wx.switchTab({
+            url:"../index/index"
+          })
+        },1000)
       })
     }
   },
