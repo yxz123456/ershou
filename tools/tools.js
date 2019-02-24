@@ -80,13 +80,7 @@ let tools = {
         let newSrcArr = srcArr.map((val,index)=>{
             return "https://ikebo.cn/flea" + val;
         })
-        while(1){
-            if(newSrcArr.length < 3){
-                newSrcArr.push("");
-            }else{
-                return newSrcArr;
-            }
-        }
+        return newSrcArr;
         
     },
     //格式化日期

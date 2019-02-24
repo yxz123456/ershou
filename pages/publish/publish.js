@@ -222,6 +222,7 @@ Page({
       realName:this.data.name[0],
       phoneNumber:this.data.tel[0]
     };
+    
     return request.request({
         url:`/item/${this.data.userInfo.id}`,
         data,
@@ -230,104 +231,62 @@ Page({
 
   },
 
-  // postImg1(index,num,imgArr,imgInfo){
-  //   if(index == num-1){
-  //     return request.uploadFile({
-  //       filePath:imgInfo[index],
-  //       name:"img"
-  //     })
-  //   }
-  //   return request.uploadFile({
-  //     filePath:imgInfo[index],
-  //     name:"img"
-  //   }).then(res=>{
-  //     //图片存储到本地
-  //     data = JSON.parse(res.data);
-  //     console.log(data);
-  //     imgArr.push(data.data.imgServerPath);
-  //     this.postImg(index+1,num,imgArr);
-  //   })
-  // },
-
-  //上传图片
-  postImg(){
+ //向服务器上传图片
+ postImg(){
     let imgInfo = this.data.imgInfo;
-    //图片长度
-    let len = imgInfo.length;
-    console.log(len);
-    //存服务器返回的数据
-    let data;
-    //存服务器返回的src
-    let imgArr = [];
-
-    for(let i = 0; i < len; i++){
-      if(i == len - 1){
-        return request.uploadFile({
-          filePath:imgInfo[i],
-          name:"img"
-        })
-      }
-      request.uploadFile({
-        filePath:imgInfo[i],
+    let imgPromise = imgInfo.map((val) => {
+      return request.uploadFile({
+        filePath:val,
         name:"img"
-      }).then(res=>{
-        //图片存储
-        data = JSON.parse(res.data);
-        console.log(data);
-        imgArr.push(data.data.imgServerPath);
-        // console.log(imgArr);
-        if(i == len - 2){
-          this.setData({
-            serverImg:imgArr,
-            imgFinish:true       
-          })
-          console.log(this.data.serverImg)
-        }
       })
-    }
-  },
+    })
+    return imgPromise
+ },
 
-  // 上传
+  
+  //上传
   post(){
-    // let imgInfo = this.data.imgInfo;
-    
-    // //存服务器返回的src
-    // let imgArr = [];
-
-    this.postImg()
-    //图片上传
-    .then(res=>{
-      let imgArr = this.data.serverImg;
-      //图片存储到本地
-      let data = JSON.parse(res.data);
-      console.log(data);
-      imgArr.push(data.data.imgServerPath);
-      // console.log(imgArr);
+    Promise.all(this.postImg()).then(res => {
+      console.log(res)
+      let data;
+      let imgArr = []
+      for(let i = 0; i < res.length; i++ ){
+        data = JSON.parse(res[i].data)
+        imgArr.push(data.data.imgServerPath);
+      }
       this.setData({
-        serverImg:imgArr,
-        imgFinish:true
+        serverImg:imgArr
       })
-      console.log(this.data.serverImg);
       return this.postData();
     })
     //数据上传
     .then(res => {
+      console.log('post',res)
       tools.infoAlert("发布成功");
       //隔半秒跳转回主页
       setTimeout(() => {
         wx.switchTab({
           url:'../index/index'
         })
-        // this.clearData();
+        //清除数据
+        this.clear()
       }, 1000);
-      //清空数据
-      
     })
     .catch(res =>{
+      console.log('err',res)
       tools.infoAlert("发布失败");
       console.log("失败");
     })
-    
+  },
+
+  clear(){
+    this.setData({
+      isSend:true,
+      imgInfo:[],
+      serverImg:[],
+      labelList: [false, false, false, false, false],
+      labelInfo:""
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -350,7 +309,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    setInterval(()=>{
+      this.setData({
+        isSend:false
+      },2000)
+    })
   },
 
   /**

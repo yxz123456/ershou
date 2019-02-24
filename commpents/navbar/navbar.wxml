@@ -4,7 +4,7 @@
         <!-- <view class='nav-capsule' wx:if='{{navbarData.showCapsule}}'> -->
         <!-- 左上角的返回按钮，wx:if='{{!share}}'空制返回按钮显示 -->
         <!-- 从分享进入小程序时 返回上一级按钮不应该存在 -->
-        <view bindtap='_navback'  wx:if='{{navbarData.showCapsule}}'>
+        <view  wx:if='{{navbarData.showCapsule}}'>
           <image class='back-pre' src="../../static/img/back.png" bindtap='_backhome'/>
         </view>
       </view>
@@ -20,7 +20,7 @@
         <!-- <view class='nav-capsule' wx:if='{{navbarData.showCapsule}}'> -->
         <!-- 左上角的返回按钮，wx:if='{{!share}}'空制返回按钮显示 -->
         <!-- 从分享进入小程序时 返回上一级按钮不应该存在 -->
-        <view bindtap='_navback'  wx:if='{{navbarData.showCapsule}}'>
+        <view   wx:if='{{navbarData.showCapsule}}'>
           <image class='back-pre' src="../../static/img/back.png" bindtap='_backhome'/>
         </view>
       </view>

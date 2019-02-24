@@ -51,6 +51,7 @@ Page({
      this.setData({
        detailInfo:temp
      })
+     console.log(this.data.detailInfo.srcs);
   },
    //查看图片详情
    previewImage(ev){

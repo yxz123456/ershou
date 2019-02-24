@@ -20,7 +20,7 @@ Page({
     height:app.globalData.height * 2 + 20,
     //listItem
     publishInfo:[],
-    
+    searchInfo:"",
     userInfoFlag:tools.getUserInfo() && tools.getUserInfo().nickName
   },
 
@@ -66,6 +66,22 @@ Page({
         })
       }
       
+    })
+  },
+
+  //获取搜索信息
+  getSearchInfo(ev){
+    this.setData({
+      searchInfo:ev.detail.value
+    })
+  },
+  //搜索
+  search(){
+    request.request({
+      url:`/item/search`
+    })
+    this.setData({
+      searchInfo:""
     })
   },
   //打电话
@@ -133,7 +149,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setPublishInfo();
+    
   },
 
   /**

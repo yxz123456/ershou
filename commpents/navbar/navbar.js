@@ -30,10 +30,12 @@ Component({
   methods: {
     // 返回上一页面
     _navback() {
-      wx.navigateBack()
+      wx.navigateBack();
+      console.log("nav");
     },
     //返回到首页
     _backhome() {
+      console.log("index");
       wx.switchTab({
         url: '/pages/index/index',
       })

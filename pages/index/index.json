@@ -3,8 +3,8 @@
         "nav-bar": "/commpents/navbar/navbar"
       },
 
-    "window":{
-        "enablePullDownRefresh":true,
-        "navigationBarTitleText": "武院二手市场"
-      }
+    
+    "enablePullDownRefresh":true,
+    "navigationBarTitleText": "武院二手市场"
+      
 }
